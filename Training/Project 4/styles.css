@@ -38,14 +38,14 @@ td {
 }
 
 .O {
-    fill: green;
+    fill: blue;
 }
 
 .new_game {
     font-size: 2rem;
     border-radius: 15px;
     padding: 20px;
-    background-color: rgb(230, 237, 240);
+    background-color: rgb(137, 251, 183);
     border: none;
     cursor: pointer;
 }
@@ -117,11 +117,11 @@ td {
 }
 
 .O:hover {
-    fill: rgba(0, 128, 0, 0.655);
+    fill: rgba(0, 0, 255, 0.655);
 }
 
 .new_game:hover {
-    background-color: rgb(201, 214, 219);
+    background-color: rgba(137, 251, 183, 0.684);
 }
 
 /* Grab State */

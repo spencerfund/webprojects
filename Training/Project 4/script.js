@@ -22,7 +22,7 @@ function nextTurn() {
             });
             let turnIndicator = document.getElementById('turnIndicator');
             turnIndicator.innerHTML = "O Turn";
-            turnIndicator.style.color = "green";
+            turnIndicator.style.color = "blue";
         }
     } else {
         
