@@ -1,0 +1,143 @@
+body {
+    text-align: center;
+    font-family: sans-serif;
+}
+
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 48
+}
+
+h1 {
+    font-weight: lighter;
+    font-size: 5rem;
+}
+
+h2 {
+    font-weight: lighter;
+    font-size: 3rem;
+}
+
+table {
+    margin: auto;
+    border-collapse: collapse;
+    border-radius: 25px;
+}
+
+td {
+    height: 150px;
+    width: 150px;
+    margin: 0;
+}
+
+.X {
+    fill: red;
+}
+
+.O {
+    fill: green;
+}
+
+.new_game {
+    font-size: 2rem;
+    border-radius: 15px;
+    padding: 20px;
+    background-color: rgb(230, 237, 240);
+    border: none;
+    cursor: pointer;
+}
+
+.pieces {
+    height: 100px;
+    width: 100px;
+}
+
+.X_O_Holder {
+    background-color: rgb(237, 241, 243);
+}
+
+.break {
+    height: 50px;
+}
+
+.Game_Piece {
+    width: fit-content;
+    height: fit-content;
+    margin: auto;
+    transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+.box {
+    transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+#top_left {
+    border-bottom: 5px solid black;
+    border-right: 5px solid black;
+}
+
+#top_right {
+    border-bottom: 5px solid black;
+    border-left: 5px solid black;
+}
+
+#middle_middle {
+    border: 5px solid black;
+}
+
+#bottom_left {
+    border-top: 5px solid black;
+    border-right: 5px solid black;
+}
+
+#bottom_right {
+    border-top: 5px solid black;
+    border-left: 5px solid black;
+}
+
+#X_Last {
+    border-right: 5px solid black;
+}
+
+.Placed:hover {
+    cursor: text;
+}
+
+/* Hover States */
+
+.Game_Piece:hover {
+    cursor: grab;
+}
+
+.X:hover {
+    fill: rgba(255, 0, 0, 0.655);
+}
+
+.O:hover {
+    fill: rgba(0, 128, 0, 0.655);
+}
+
+.new_game:hover {
+    background-color: rgb(201, 214, 219);
+}
+
+/* Grab State */
+
+.Game_Piece:active {
+    cursor: grabbing;
+}
+
+.Game_Piece.Drag_Piece {
+    cursor: grabbing;
+}
+
+.box.Drop_Piece {
+    background-color:  rgb(127, 179, 201);
+}
+
+.box.Drop_Piece td {
+    pointer-events: none;
+}

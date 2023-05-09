@@ -1,0 +1,100 @@
+table {
+    margin: auto;
+    background-color: lightgray;
+    border-radius: 25px;
+    padding: 10px;
+    text-align: center;
+    font-size: larger;
+}
+
+th {
+    padding: 5px;
+    border-bottom: 1px solid black;
+}
+
+td {
+    padding: 5px;
+}
+
+body {
+    font-family: 'Dosis', sans-serif;
+    text-align: center;
+}
+
+input {
+    border-radius: 15px;
+    padding: 5px 10px;
+    border: 0px;
+    background-color: rgb(227, 227, 227);
+    font-size: 30px;
+    font-family: 'Dosis', sans-serif;
+    width: 100px;
+}
+
+input:hover {
+    background-color: gray;
+}
+
+button {
+    font-family: 'Dosis', sans-serif;
+}
+
+.button_primary {
+    border-radius: 15px;
+    background-color: green;
+    color: white;
+    border: 0px;
+    padding: 5px 10px;
+    margin: 5px 0px 5px 20px;
+}
+
+.button_primary:hover {
+    background-color: lightgreen;
+    color: black;
+}
+
+.button_alt {
+    border-radius: 15px;
+    background-color: white;
+    border: 1px solid green;
+    color: green;
+    padding: 5px 10px;
+    margin: 5px 0px 5px 20px;
+}
+
+.button_alt:hover {
+    background-color: lightgreen;
+    color: black;
+    border: 1px solid white;
+}
+
+#num_display {
+    display: flex;
+    flex-direction: row;
+    background-color: lightgray;
+    border-radius: 25px;
+    width: fit-content;
+    margin: auto;
+}
+
+.puzzle_num {
+    margin: 50px 20px;
+    font-family: 'Dosis', sans-serif;
+    font-size: 40px;
+}
+
+.inputs {
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: column;
+}
+
+.top_space {
+    height: 25vh;
+}

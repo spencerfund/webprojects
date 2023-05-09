@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Number Sequences</title>
+    <link rel="stylesheet" type="text/css" href="styles.css"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dosis&display=swap" rel="stylesheet">
+    <script type="text/javascript" src="script.js"></script>
+</head>
+<body onload="newGame()">
+    <div class="top_space"></div>
+    <h1>Fill in the missing number</h1>
+    <div id="num_display">
+        <h2 class="puzzle_num" id="num_0"></h2>
+        <h2 class="puzzle_num" id="num_1"></h2>
+        <h2 class="puzzle_num" id="num_2"></h2>
+        <h2 class="puzzle_num" id="num_3"></h2>
+        <h2 class="puzzle_num" id="num_4"></h2>
+    </div>
+    <h4>Enter Your Guess Here</h4>
+    <div class="inputs">
+        <input id="user_guess" type="text" onkeyup="inputKeyUp(event)">
+        <div class="buttons">
+            <button class="button_primary" onclick="guessNum()">Check Answer</button>
+            <button class="button_alt" onclick="newProblem()">New Problem</button>
+        </div>
+    </div>
+    <br>
+    <table>
+        <thead>
+            <tr>
+               <th>Question Number</th>
+               <th>Right</th>
+               <th>Wrong</th>
+               <th>Percent Right</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td id="Question_Number"></td>
+                <td id="Right"></td>
+                <td id="Wrong"></td>
+                <td id="Percent_Right"></td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
