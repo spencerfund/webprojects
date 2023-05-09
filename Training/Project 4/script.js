@@ -1,5 +1,6 @@
 xTurn = true;
 gameOver = false;
+xWin = false;
 
 function nextTurn() {
     if (!gameOver) {
@@ -25,9 +26,17 @@ function nextTurn() {
             turnIndicator.style.color = "blue";
         }
     } else {
-        
+        if (xWin) {
+            window.alert(["X Wins!"]);
+        } else {
+            window.alert(["O Wins!"]);
+        }
     }
 };
+
+function checkWin() {
+    gameOver = true;
+}
 
 const drag = event => {
     event.dataTransfer.setData('text/html', event.currentTarget.outerHTML);
@@ -70,6 +79,7 @@ const drop = event => {
     item.removeAttribute('draggable');
     
     xTurn = !xTurn;
+    checkWin();
     nextTurn();
 };
 
