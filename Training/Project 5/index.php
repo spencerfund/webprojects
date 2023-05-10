@@ -10,6 +10,7 @@
 <body>
     <div class="form_holder">
         <h1>Sign Up Form</h1>
+        <div class="break"></div>
         <form action="form.php" method="post">
             <label for="firstName">First Name:</label>
             <input type="text" name="firstName" id="firstName" required>
