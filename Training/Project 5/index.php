@@ -9,38 +9,7 @@
 </head>
 <body>
 
-<?php 
-    $firstName = $lastName = $email = $phone = $address = $city = $zipCode = $state = $gender = $schoolYear = "";
-    $usCitizen = false;
-
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $firstName = test_input($_POST["firstName"]);
-        $lastName = test_input($_POST["lastName"]);
-        $email = test_input($_POST["email"]);
-        $phone = test_input($_POST["phone"]);
-        $address = test_input($_POST["address"]);
-        $city = test_input($_POST["city"]);
-        $zipCode = test_input($_POST["zipCode"]);
-        $state = test_input($_POST["state"]);
-        $gender = test_input($_POST["gender"]);
-        $schoolYear = test_input($_POST["schoolYear"]);
-        if ($_POST["usCitizen"] == "citizen") {
-            $usCitizen = "Yes";
-        } else {
-            $usCitizen = "No";
-        }
-        $usCitizen = $_POST["usCitizen"];
-    }
-
-    function test_input($data) {
-        $data = trim($data);
-        $data = stripslashes($data);
-        $data = htmlspecialchars($data);
-        return $data;
-    }
-    ?>
-
-    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post">
+    <form action="form.php" method="post">
         <label for="firstName">First Name:</label>
         <input type="text" name="firstName" id="firstName" required>
         <div class="break"></div>
@@ -51,19 +20,19 @@
         <input type="email" name="email" id="email" required>
         <div class="break"></div>
         <label for="phone">Phone:</label>
-        <input type="tel" name="phone" id="phone" required>
+        <input type="tel" name="phone" id="phone" required="required">
         <div class="break"></div>
         <label for="address">Address:</label>
-        <input type="text" name="address" id="address" required>
+        <input type="text" name="address" id="address" required="required">
         <div class="break"></div>
         <label for="city">City:</label>
-        <input type="text" name="city" id="city" required>
+        <input type="text" name="city" id="city" required="required">
         <div class="break"></div>
         <label for="zipCode">Zip Code:</label>
-        <input type="text" name="zipCode" id="zipCode" required>
+        <input type="text" name="zipCode" id="zipCode" required="required">
         <div class="break"></div>
         <label for="state">State:</label>
-        <select name="state" id="state" required>
+        <select name="state" id="state" required="required">
             <option value="Alabama">Alabama</option>
             <option value="Alaska">Alaska</option>
             <option value="Arizona">Arizona</option>
@@ -115,7 +84,7 @@
             <option value="Wyoming">Wyoming</option>
         </select>
         <div class="break"></div>
-        <input type="checkbox" name="usCitizen" id="usCitizen" value="citizen" required>
+        <input type="checkbox" name="usCitizen" id="usCitizen" value="citizen" required="required">
         <label for="usCitizen">US Citizen?</label>
         <div class="break"></div>
         Gender:<input type="radio" name="gender" value="Male" id="male">
@@ -134,25 +103,5 @@
         <div class="break"></div>
         <input type="submit" value="Submit">
     </form>
-
-    <?php
-    echo "<div class=\"break\"></div><h4>Personal Information</h4>";
-    echo "Name: " . $firstName . " " . $lastName;
-    echo "<br>";
-    echo "Gender: " . $gender;
-    echo "<br>";
-    echo "Year in School: " . $schoolYear;
-    echo "<br>";
-    echo "US Citizen: " > $usCitizen;
-
-    echo "<h4>Contact Information:</h4>";
-    echo "Email: " . $email;
-    echo "<br>";
-    echo "Phone: " . $phone;
-    echo "<div class=\"break\"></div>";
-    echo "<h4>Address</h4>" . $address;
-    echo "<br>";
-    echo $city . ", " . $state . " " . $zipCode;
-    ?>
 </body>
 </html>

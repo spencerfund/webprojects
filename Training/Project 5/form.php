@@ -7,7 +7,57 @@
     <title>Welcome!</title>
 </head>
 <body>
-    Welcome <?php echo $_POST["firstName"] . " " . $_POST["lastName"];?><br>
+
+<?php 
+$firstName = $lastName = $email = $phone = $address = $city = $zipCode = $state = $gender = $schoolYear = "";
+$usCitizen = false;
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $firstName = test_input($_POST["firstName"]);
+    $lastName = test_input($_POST["lastName"]);
+    $email = test_input($_POST["email"]);
+    $phone = test_input($_POST["phone"]);
+    $address = test_input($_POST["address"]);
+    $city = test_input($_POST["city"]);
+    $zipCode = test_input($_POST["zipCode"]);
+    $state = test_input($_POST["state"]);
+    $gender = test_input($_POST["gender"]);
+    $schoolYear = test_input($_POST["schoolYear"]);
+    if ($_POST["usCitizen"] == "citizen") {
+        $usCitizen = "Yes";
+    } else {
+        $usCitizen = "No";
+    }
+    $usCitizen = $_POST["usCitizen"];
+}
+
+function test_input($data) {
+    $data = trim($data);
+    $data = stripslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
+}
+?>
+
+<?php
+echo "<div class=\"break\"></div><h4>Personal Information</h4>";
+echo "Name: " . $firstName . " " . $lastName;
+echo "<br>";
+echo "Gender: " . $gender;
+echo "<br>";
+echo "Year in School: " . $schoolYear;
+echo "<br>";
+echo "US Citizen: " > $usCitizen;
+
+echo "<h4>Contact Information:</h4>";
+echo "Email: " . $email;
+echo "<br>";
+echo "Phone: " . $phone;
+echo "<div class=\"break\"></div>";
+echo "<h4>Address</h4>" . $address;
+echo "<br>";
+echo $city . ", " . $state . " " . $zipCode;
+?>
     
 </body>
 </html>
