@@ -35,6 +35,7 @@
             <div class="break"></div>
             <label for="state">State:</label>
             <select name="state" id="state" required="required">
+                <option value=""></option>
                 <option value="Alabama">Alabama</option>
                 <option value="Alaska">Alaska</option>
                 <option value="Arizona">Arizona</option>
@@ -86,22 +87,31 @@
                 <option value="Wyoming">Wyoming</option>
             </select>
             <div class="break"></div>
-            <input type="checkbox" name="usCitizen" id="usCitizen" value="citizen" required="required">
-            <label for="usCitizen">US Citizen?</label>
+            <div id="citizen_form">
+                <input type="checkbox" name="usCitizen" id="usCitizen" value="citizen" required="required">
+                <label for="usCitizen">US Citizen?</label>
+            </div>
             <div class="break"></div>
-            Gender:<input type="radio" name="gender" value="Male" id="male">
-            <label for="male">Male</label>
-            <input type="radio" name="gender" value="female" id="Female">
-            <label for="female">Female</label>
             <div class="break"></div>
-            Year In School:<input type="radio" name="schoolYear" value="Freshman" id="freshman">
-            <label for="freshman">Freshman</label>
-            <input type="radio" name="schoolYear" value="Sophomore" id="sophomore">
-            <label for="sophomore">Sophomore</label>
-            <input type="radio" name="schoolYear" value="Junior" id="junior">
-            <label for="junior">Junior</label>
-            <input type="radio" name="schoolYear" value="Senior" id="senior">
-            <label for="senior">Senior</label>
+            Gender:
+            <div class="radio_group">
+                <input type="radio" name="gender" value="Male" id="male">
+                <label for="male">Male</label>
+                <input type="radio" name="gender" value="female" id="Female">
+                <label for="female">Female</label>
+            </div>
+            <div class="break"></div>
+            Year In School:
+            <div class="radio_group">
+                <input type="radio" name="schoolYear" value="Freshman" id="freshman">
+                <label for="freshman">Freshman</label>
+                <input type="radio" name="schoolYear" value="Sophomore" id="sophomore">
+                <label for="sophomore">Sophomore</label>
+                <input type="radio" name="schoolYear" value="Junior" id="junior">
+                <label for="junior">Junior</label>
+                <input type="radio" name="schoolYear" value="Senior" id="senior">
+                <label for="senior">Senior</label>
+            </div>
             <div class="break"></div>
             <input type="submit" value="Submit">
         </form>
