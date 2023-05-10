@@ -1,4 +1,9 @@
-form {
+input[type="text"], input[type="email"], input[type="tel"]{
+    float: right;
+}
+
+.form_holder {
+    width: 35%;
     margin: auto;
 }
 
@@ -8,4 +13,16 @@ form {
 
 .required {
     color: red;
+}
+
+input[type="submit"] {
+    border: none;
+    font-size: larger;
+    padding: 10px;
+    border-radius: 15px;
+    background-color: cyan;
+}
+
+input[type="submit"]:hover {
+    background-color: rgba(0, 255, 255, 0.358);
 }
