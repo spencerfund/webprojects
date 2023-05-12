@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome!</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
 
@@ -23,12 +24,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $state = test_input($_POST["state"]);
     $gender = test_input($_POST["gender"]);
     $schoolYear = test_input($_POST["schoolYear"]);
-    if ($_POST["usCitizen"] == "citizen") {
-        $usCitizen = "Yes";
+    if (isset($_POST["usCitizen"])) {
+        $usCitizen = true;
     } else {
-        $usCitizen = "No";
+        $usCitizen = false;
     }
-    $usCitizen = $_POST["usCitizen"];
 }
 
 function test_input($data) {
@@ -40,14 +40,20 @@ function test_input($data) {
 ?>
 
 <?php
-echo "<div class=\"break\"></div><h4>Personal Information</h4>";
+echo "<div class=\"break\"></div><div class=\"form_holder\"><h4>Personal Information</h4>";
 echo "Name: " . $firstName . " " . $lastName;
 echo "<br>";
 echo "Gender: " . $gender;
 echo "<br>";
 echo "Year in School: " . $schoolYear;
 echo "<br>";
-echo "US Citizen: " > $usCitizen;
+
+if ($usCitizen == true) {
+    echo "US Citizen: Yes";
+} else {
+    echo "US Citizen: No";
+}
+
 
 echo "<h4>Contact Information:</h4>";
 echo "Email: " . $email;
@@ -57,6 +63,7 @@ echo "<div class=\"break\"></div>";
 echo "<h4>Address</h4>" . $address;
 echo "<br>";
 echo $city . ", " . $state . " " . $zipCode;
+echo "</div>";
 ?>
     
 </body>

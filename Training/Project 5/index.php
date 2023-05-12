@@ -8,6 +8,7 @@
     <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
+    <div class="break"></div>
     <div class="form_holder">
         <h1>Sign Up Form</h1>
         <div class="break"></div>
@@ -88,7 +89,7 @@
             </select>
             <div class="break"></div>
             <div id="citizen_form">
-                <input type="checkbox" name="usCitizen" id="usCitizen" value="citizen" required="required">
+                <input type="checkbox" name="usCitizen" id="usCitizen" value="citizen">
                 <label for="usCitizen">US Citizen?</label>
             </div>
             <div class="break"></div>

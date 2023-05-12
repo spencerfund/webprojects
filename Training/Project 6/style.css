@@ -1,0 +1,193 @@
+@font-face {
+    font-family: 'Halo';
+    src: url('res/Halo.ttf') format('truetype');
+}
+
+body {
+    font-family: 'Halo', sans-serif;
+}
+
+.spnkr {
+    width: 300px;
+    height: auto;
+    transform: rotate(36deg);
+    position: absolute;
+    bottom: 0px;
+    right: -40px;
+}
+
+.banshee {
+    transform: scaleX(-1);
+    width: 5px;
+    height: auto;
+    position: absolute;
+}
+
+#banshee1 {
+    top: 300px;
+    left: 240px;
+}
+
+#banshee2 {
+    top: 200px;
+    left: 320px;
+}
+
+#banshee3 {
+    top: 150px;
+    left: 70px;
+}
+
+#banshee4 {
+    top: 100px;
+    left: 180px;
+}
+
+#banshee5 {
+    top: 330px;
+    left: 50px;
+}
+
+#explosion {
+    width: 60px;
+    height: auto;
+    position: absolute;
+    left: 0px;
+    right: 0px;
+}
+
+#rocket {
+    width: 80px;
+    height: auto;
+    transform: rotate(220deg);
+    position: absolute;
+    bottom: 155px;
+    right: 210px;
+}
+
+.background {
+    margin: auto;
+    width: 1024px;
+    height: 1024px;
+    background-image: url("res/backgrounds.jpeg");
+    background-repeat: no-repeat;
+    background-position: center;
+    position: relative;
+    overflow: hidden;
+}
+
+#start {
+    position: absolute;
+    top: 460px;
+    left: 200px;
+    border: none;
+    background: none;
+    color: rgba(58, 112, 250, 0.808);
+    font-size: 60px;
+    font-family: 'Halo';
+}
+
+#start:hover {
+    color: white;
+    cursor: pointer;
+    text-shadow: -1px -1px 10px rgb(0, 140, 255),
+                 1px -1px 10px rgb(0, 140, 255),
+                 -1px 1px 10px rgb(0, 140, 255),
+                 1px 1px 10px rgb(0, 140, 255);
+}
+
+#promptBox {
+    position: absolute;
+    bottom: 115px;
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    justify-content: center;
+}
+
+#prompt {
+    font-size: 80px;
+    color: white;
+    background-color: rgba(58, 122, 250, 0.525);
+    padding: 10px;
+    border-radius: 10px;
+    margin: 0;
+}
+
+#answerBox {
+    position: absolute;
+    bottom: 20px;
+    left: 410px;
+    font-size: 80px;
+    font-family: 'Halo';
+    color: white;
+    width: 200px;
+    background-color: rgba(58, 122, 250, 0.525);
+    border: none;
+    border-radius: 10px;
+    text-align: center;
+}
+
+#answerBox:focus {
+    border: 3px solid white;
+}
+
+#shieldHolder {
+    border: 4px solid rgb(58, 122, 250, 0.525);
+    border-radius: 10px;
+    position: absolute;
+    bottom: 30px;
+    left: 20px;
+    width: 35%;
+    height: 50px;
+}
+
+#shieldValue {
+    background-color: rgba(58, 122, 250, 0.888);
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+}
+
+#endGameBox {
+    width: 80%;
+    height: 80%;
+    margin: auto;
+    margin-top: 102px;
+    background-color: rgba(34, 70, 143, 0.849);
+    border: 10px solid rgb(50, 104, 213);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+#winLose {
+ font-size: 80px;
+ color: white;
+}
+
+#newGame {
+    font-size: 40px;
+    padding: 20px;
+    border-radius: 10px;
+    background: none;
+    color: rgb(59, 120, 241);
+    font-family: 'Halo';
+    border: 5px solid rgb(50, 104, 213);
+}
+
+#newGame:hover {
+    border-color: white;
+    color: white;
+    cursor: pointer;
+    text-shadow: -1px -1px 10px rgb(0, 140, 255),
+    1px -1px 10px rgb(0, 140, 255),
+    -1px 1px 10px rgb(0, 140, 255),
+    1px 1px 10px rgb(0, 140, 255);
+    box-shadow: -1px -1px 10px rgb(0, 140, 255),
+    1px -1px 10px rgb(0, 140, 255),
+    -1px 1px 10px rgb(0, 140, 255),
+    1px 1px 10px rgb(0, 140, 255);
+}
