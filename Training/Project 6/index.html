@@ -76,9 +76,6 @@
                             shootUser();
                         }
                         $("#answerBox").val('');
-                        if (hitCount > 5) {
-                            endGame(true);
-                        }
                     }
                 });
             });
@@ -99,6 +96,10 @@
                     $("#explosion").css({"left": left, "top": top, "width":  '200px'});
                     $("#explosion").animate({width: '+=50px', opacity: 0}, 5000, function() {
                         $("#explosion").hide();
+                        if (hitCount > 5) {
+                            shieldLow.pause();
+                            endGame(true);
+                        }
                     });
                 });
             }
