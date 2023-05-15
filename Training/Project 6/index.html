@@ -17,6 +17,10 @@
             const bansheeFlight = new Audio("sounds/bansheeflight.mp3");
             const shieldLow = new Audio("sounds/shieldlow.mp3");
             const fuelrodLaunch = new Audio("sounds/bansheefire.mp3");
+            const countdown = new Audio("sounds/countdown.wav");
+            const respawn = new Audio("sounds/respawn.wav");
+            const winMusic = new Audio("sounds/finale.mp3");
+            const lossMusic = new Audio("sounds/neverforget.mp3");
             var hitCount = 1;
             var userLives = 6;
             var mathProblems = [];
@@ -26,7 +30,8 @@
             $(document).ready(function() {
                 $("#newGame").click(function() {
                     location.reload();
-                })
+                });
+                $("#countdownBox").hide();
                 $("#endGameBox").hide();
                 $("#answerBox").hide();
                 $("#promptBox").hide();
@@ -38,33 +43,51 @@
                 $("#explosion").hide();
                 $("#start").show();
                 $("#start").click(function() {
-                    backgroundMusic.play();
-                    mathProblems[0] = "";
-                    mathAnswers[0] = "";
-                    for (let i = 1; i < 6; i++) {
-                        let randomNumber1 = Math.floor(Math.random()*10);
-                        while (randomNumber1 == 0) {
-                            randomNumber1 = Math.floor(Math.random()*10);
-                        }
-                        let randomNumber2 = Math.floor(Math.random()*10);
-                        while (randomNumber2 == 0) {
-                            randomNumber2 = Math.floor(Math.random()*10);
-                        }
-                        mathAnswers[i] = randomNumber1 + randomNumber2;
-                        mathProblems[i] = randomNumber1 + " + " + randomNumber2;
-                    }
-                    mathProblems[6] = "";
-                    updatePrompt();
                     $("#start").hide();
-                    $("#answerBox").show().focus();
-                    $("#promptBox").show();
-                    $("#shieldHolder").show();
-                    $(".spnkr").show();
-                    startBansheeFlight("#banshee1");
-                    setTimeout(function() {startBansheeFlight("#banshee2");}, 6000);
-                    setTimeout(function() {startBansheeFlight("#banshee3");}, 11000);
-                    setTimeout(function() {startBansheeFlight("#banshee4");}, 17000);
-                    setTimeout(function() {startBansheeFlight("#banshee5");}, 22000);
+                    $("#countdown").text("3");
+                    $("#countdownBox").show();
+                    countdown.play();
+                    backgroundMusic.play();
+                    setTimeout(function() {
+                        countdown.play();
+                        $("#countdown").text("2");
+                        setTimeout(function() {
+                            $("#countdown").text("1");
+                            countdown.play();
+                            setTimeout(function() {
+                                $("#countdown").text("START");
+                                respawn.play();
+                                setTimeout(function() {
+                                    $("#countdownBox").hide();
+                                    mathProblems[0] = "";
+                                    mathAnswers[0] = "";
+                                    for (let i = 1; i < 6; i++) {
+                                        let randomNumber1 = Math.floor(Math.random()*10);
+                                        while (randomNumber1 == 0) {
+                                            randomNumber1 = Math.floor(Math.random()*10);
+                                        }
+                                        let randomNumber2 = Math.floor(Math.random()*10);
+                                        while (randomNumber2 == 0) {
+                                            randomNumber2 = Math.floor(Math.random()*10);
+                                        }
+                                        mathAnswers[i] = randomNumber1 + randomNumber2;
+                                        mathProblems[i] = randomNumber1 + " + " + randomNumber2;
+                                    }
+                                    mathProblems[6] = "";
+                                    updatePrompt();
+                                    $("#answerBox").show().focus();
+                                    $("#promptBox").show();
+                                    $("#shieldHolder").show();
+                                    $(".spnkr").show();
+                                    startBansheeFlight("#banshee1");
+                                    setTimeout(function() {startBansheeFlight("#banshee2");}, 6000);
+                                    setTimeout(function() {startBansheeFlight("#banshee3");}, 11000);
+                                    setTimeout(function() {startBansheeFlight("#banshee4");}, 17000);
+                                    setTimeout(function() {startBansheeFlight("#banshee5");}, 22000);
+                                }, 1000);
+                            }, 1000);
+                        }, 1000);
+                    }, 1000);
                 });
 
                 $("#answerBox").keydown(function(e) {
@@ -164,8 +187,12 @@
                 $("#shieldHolder").hide();
                 gameOver = true;
                 if (win) {
+                    winMusic.play();
+                    backgroundMusic.pause();
                     $("#winLose").text("YOU WIN");
                 } else {
+                    lossMusic.play();
+                    backgroundMusic.pause();
                     $("#winLose").text("YOU LOSE");
                 }
             }
@@ -173,7 +200,6 @@
             function startBansheeFlight(bansheeID) {
                 if (!gameOver) {
                     $(bansheeID).show();
-                    bansheeFlight.play();
                     $(bansheeID).animate({left: '+=400px', top: '+=400px', width: '300px'}, 30000, "linear");
                 }
             }
@@ -190,6 +216,7 @@
             <img src="res/explosion.png" id="explosion"/>
             <button id="start">START GAME</button>
             <input type="text" name="answer" id="answerBox">
+            <div id="countdownBox"><p id="countdown">3</p></div>
             <div id="promptBox"><p id="prompt"></p></div>
             <div id="shieldHolder"><div id="shieldValue"></div></div>
             <div id="endGameBox">
