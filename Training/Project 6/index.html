@@ -16,6 +16,7 @@
             const spnkrHit = new Audio("sounds/spnkrhit.mp3");
             const bansheeFlight = new Audio("sounds/bansheeflight.mp3");
             const shieldLow = new Audio("sounds/shieldlow.mp3");
+            const fuelrodLaunch = new Audio("sounds/bansheefire.mp3");
             var hitCount = 1;
             var userLives = 6;
             var mathProblems = [];
@@ -33,9 +34,11 @@
                 $(".banshee").hide();
                 $(".spnkr").hide();
                 $("#rocket").hide();
+                $("#fuelrod").hide();
                 $("#explosion").hide();
                 $("#start").show();
                 $("#start").click(function() {
+                    backgroundMusic.play();
                     mathProblems[0] = "";
                     mathAnswers[0] = "";
                     for (let i = 1; i < 6; i++) {
@@ -52,7 +55,6 @@
                     }
                     mathProblems[6] = "";
                     updatePrompt();
-                    backgroundMusic.play();
                     $("#start").hide();
                     $("#answerBox").show().focus();
                     $("#promptBox").show();
@@ -73,7 +75,8 @@
                             hitCount++;
                             updatePrompt();
                         } else {
-                            shootUser();
+                            var bansheeNum = "#banshee" + hitCount;
+                            shootUser(bansheeNum);
                         }
                         $("#answerBox").val('');
                     }
@@ -81,20 +84,20 @@
             });
 
             function shootBanshee(bansheeID) {
+                spnkrLaunch.play();
                 $("#rocket").css({"width": "80px", "left": "", "top": ""});
                 $("#explosion").css({"opacity": "1"});
                 $("#rocket").show();
-                spnkrLaunch.play();
                 var left = $(bansheeID).css("left");
                 var top = $(bansheeID).css("top");
                 var width = $(bansheeID).css("width");
-                $("#rocket").animate({left: left, top: top, width: "20px"}, 2000, function() {
+                $("#rocket").animate({left: left, top: top, width: "20px"}, 1000, function() {
                     spnkrHit.play();
                     $(bansheeID).hide();
                     $("#rocket").hide();
                     $("#explosion").show();
-                    $("#explosion").css({"left": left, "top": top, "width":  '200px'});
-                    $("#explosion").animate({width: '+=50px', opacity: 0}, 5000, function() {
+                    $("#explosion").css({"left": left, "top": top, "width":  '200px', opacity: "1"});
+                    $("#explosion").animate({width: '+=50px', opacity: 0}, 1000, function() {
                         $("#explosion").hide();
                         if (hitCount > 5) {
                             shieldLow.pause();
@@ -108,35 +111,48 @@
                 $("#prompt").text(mathProblems[hitCount]);
             }
 
-            function shootUser() {
+            function shootUser(bansheeID) {
+                fuelrodLaunch.play();
                 userLives--;
-                switch (userLives) {
-                    case 5:
-                        $("#shieldValue").css({"width": "80%"});
-                        break;
-                    case 4:
-                        $("#shieldValue").css({"width": "60%"});
-                        break;
-                    case 3:
-                        $("#shieldValue").css({"width": "40%"});
-                        break;
-                    case 2: 
-                        $("#shieldValue").css({"width": "20%"});
-                        break;
-                    case 1:
-                        $("#shieldValue").css({"width": "0%"}); 
-                        $("#shieldHolder").css({"border": "4px solid rgba(250, 58, 58, 0.525)"});
-                        shieldLow.play();
-                        break;
-                    case 0:
-                        shieldLow.pause();
-                        endGame(false);
-                        break;
-                }
+                var left = $(bansheeID).css("left");
+                var top = $(bansheeID).css("top");
+                $("#fuelrod").css({"left": left, "top": top, "width": "20px"});
+                $("#fuelrod").show();
+                $("#fuelrod").animate({left: "800px", top: "880px", width: "100px"}, 1000, function() {
+                    $("#fuelrod").hide();
+                    $("#explosion").show();
+                    $("#explosion").css({"left": "800px", "top": "880px", "width":  '200px', opacity: "1"});
+                    $("#explosion").animate({width: '+=50px', opacity: 0}, 1000, function() {
+                        $("#explosion").hide();
+                        fuelrodLaunch.pause();
+                        switch (userLives) {
+                            case 5:
+                                $("#shieldValue").css({"width": "80%"});
+                                break;
+                            case 4:
+                                $("#shieldValue").css({"width": "60%"});
+                                break;
+                            case 3:
+                                $("#shieldValue").css({"width": "40%"});
+                                break;
+                            case 2: 
+                                $("#shieldValue").css({"width": "20%"});
+                                break;
+                            case 1:
+                                $("#shieldValue").css({"width": "0%"}); 
+                                $("#shieldHolder").css({"border": "4px solid rgba(250, 58, 58, 0.525)"});
+                                shieldLow.play();
+                                break;
+                            case 0:
+                                shieldLow.pause();
+                                endGame(false);
+                                break;
+                        }
+                    });
+                });
             }
 
             function endGame(win) {
-                backgroundMusic.pause();
                 $("#endGameBox").show();
                 $(".banshee").hide();
                 $(".banshee").stop("stopAll");
@@ -170,6 +186,7 @@
             <img src="res/banshee.png" id="banshee5" class="banshee"/>
             <img src="res/m41.png" class="spnkr"/>
             <img src="res/rocket.png" id="rocket"/>
+            <img src="res/fuelrod.png" id="fuelrod">
             <img src="res/explosion.png" id="explosion"/>
             <button id="start">START GAME</button>
             <input type="text" name="answer" id="answerBox">

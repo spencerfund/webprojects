@@ -12,8 +12,8 @@ body {
     height: auto;
     transform: rotate(36deg);
     position: absolute;
-    bottom: 0px;
-    right: -40px;
+    top: 940px;
+    left: 800px;
 }
 
 .banshee {
@@ -53,7 +53,6 @@ body {
     height: auto;
     position: absolute;
     left: 0px;
-    right: 0px;
 }
 
 #rocket {
@@ -63,6 +62,13 @@ body {
     position: absolute;
     bottom: 155px;
     right: 210px;
+}
+
+#fuelrod {
+    width: 20px;
+    height: auto;
+    position: absolute;
+    transform: rotate(60deg);
 }
 
 .background {
