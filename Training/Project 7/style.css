@@ -1,0 +1,145 @@
+body {
+    font-family: sans-serif;
+    margin: 0;
+}
+
+h1 {
+    font-weight: normal;
+    text-align: center;
+    color: rgb(0, 89, 89);
+}
+
+h4 {
+    font-weight: normal;
+    text-align: left;
+    color: rgb(0, 89, 89);
+}
+
+.header {
+    padding: 0px 20px;
+    height: 100px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    background-color: lightgray;
+    margin-bottom: 20px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.account {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+#user {
+    font-size: larger;
+}
+
+.form_holder {
+    width: 20%;
+    margin: auto;
+    background-color: lightgray;
+    padding: 20px 50px 50px 50px;
+    border-radius: 10px;
+}
+
+.link-holder {
+    margin: auto;
+    padding-top: 20px;
+    width: 20%;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    align-items: center;
+}
+
+.break {
+    height: 25px;
+}
+
+.required {
+    color: red;
+}
+
+#citizen_form {
+    float: right;
+}
+
+.radio_group {
+    float: right;
+}
+
+input[type="text"], input[type="password"] {
+    float: right;
+    width: 300px;
+    border-radius: 10px;
+    border: 1px solid rgb(0, 89, 89);
+    padding: 5px;
+}
+
+input[type="text"]:focus, input[type="email"]:active, input[type="tel"]:active {
+    border: 3px solid rgb(0, 89, 89);
+}
+
+select {
+    float: right;
+    width: 312px;
+    height: 27px;
+    border-radius: 10px;
+    border: 1px solid rgb(0, 89, 89);
+    padding: 5px;
+}
+
+select:active {
+    float: right;
+    width: 312px;
+    height: 27px;
+    border-radius: 10px;
+    border: 3px solid rgb(0, 89, 89);
+    padding: 5px;
+}
+
+input[type="checkbox"] {
+    cursor: pointer;
+}
+
+input[type="checkbox"]:before {
+    border: 1px solid rgb(0, 89, 89);
+}
+
+input[type="checkbox"]:checked:after {
+    background-color: rgb(0, 89, 89);
+}
+
+button {
+    border: none;
+    font-size: larger;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: rgb(0, 89, 89);
+    color: white;
+    height: fit-content;
+}
+
+button:hover {
+    background-color: rgba(0, 89, 89, 0.662);
+    cursor: pointer;
+}
+
+input[type="submit"] {
+    margin-top: 40px;
+    border: none;
+    font-size: larger;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: rgb(0, 89, 89);
+    color: white;
+    width: 100%;
+}
+
+input[type="submit"]:hover {
+    background-color: rgba(0, 89, 89, 0.662);
+    cursor: pointer;
+}

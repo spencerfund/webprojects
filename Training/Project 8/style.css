@@ -1,0 +1,237 @@
+body{
+  min-height: 100vh;
+  background: lightgray;
+  font-family: sans-serif;
+  overflow: hidden;
+}
+
+a {
+    color: rgb(83, 139, 195);
+}
+
+a:hover {
+    color: rgb(116, 159, 202);
+}
+
+#loginbox {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 4;
+    background-color: #333333a9;
+}
+
+#loginbox h1, #loginbox p {
+    margin-top: 0;
+    user-select: none;
+}
+
+#loginbox h1 {
+    width: 100%;
+    text-align: center;
+}
+
+#loginForm {
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.393);
+    height: 25vh;
+    width: 20vw;
+    background-color: white;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+#registerForm {
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.393);
+    height: 40vh;
+    width: 20vw;
+    background-color: white;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;  
+}
+
+.box-header {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+#closeLogin {
+    justify-self: end;
+}
+
+#closeRegister {
+    justify-self: end;
+}
+
+input[type="text"], input[type="password"] {
+    font-size: larger !important;
+    border-radius: 10px;
+    background-color: rgb(223, 223, 223) !important;
+    padding: 5px 20px;
+    border: none;
+}
+
+input:-webkit-autofill {
+    background-color: rgb(223, 223, 223) !important;
+    appearance: none !important;
+    color: black !important;
+    background-image: none !important;
+}
+
+input[type="text"]:focus, input[type="password"]:focus {
+    outline: none;
+    border: 3px solid rgb(83, 139, 195);
+}
+
+.wrapper{
+  margin: auto;
+  width: 70vw;
+  min-height: 80vh;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+}
+
+.wrapper header{
+  display: flex;
+  align-items: center;
+  padding: 25px 30px 10px;
+  justify-content: center;
+  gap: 30px;
+}
+
+header .icons{
+  display: flex;
+}
+
+#loginbox span {
+    height: 50px;
+    width: 50px;
+    margin: 0 1px;
+    cursor: pointer;
+    text-align: center;
+    line-height: 30px;
+    font-size: 1.9rem;
+    user-select: none;
+    border-radius: 50%;
+}
+
+#loginbox span:hover {
+    color: #878787;
+}
+
+header .icons span{
+  height: 50px;
+  width: 50px;
+  margin: 0 1px;
+  cursor: pointer;
+  color: #878787;
+  text-align: center;
+  line-height: 50px;
+  font-size: 1.9rem;
+  user-select: none;
+  border-radius: 50%;
+}
+
+header .icons span:hover{
+  background: #f2f2f2;
+}
+
+header .current-date{
+  font-size: 1.45rem;
+  font-weight: 500;
+}
+
+.calendar{
+  padding: 20px;
+}
+
+.calendar ul{
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  text-align: center;
+  padding-inline-start: 0;
+}
+
+.calendar li{
+  color: #333;
+  width: calc(100% / 7.1);
+  font-size: 1.07rem;
+  border: 1px solid rgba(0, 0, 0, 0.411);
+  text-align: center;
+}
+
+.calendar .weeks li{
+  font-weight: 500;
+  cursor: default;
+}
+
+.calendar .days li{
+  z-index: 1;
+  cursor: default;
+  height: 12vh;
+  display: flex;
+  justify-content: center;
+  padding-top: 5px;
+}
+
+.calendar p {
+    margin: 0;
+    background-color: white;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    line-height: 30px;
+    user-select: none;
+}
+
+.calendar p:hover {
+    background-color: #dadada;
+    cursor: pointer;
+}
+
+.days p.inactive{
+  color: #aaa;
+}
+
+.days p.active{
+  color: #fff;
+  background-color: rgb(83, 139, 195);
+}
+
+.button, button {
+    border-radius: 10px;
+    padding: 10px 30px;
+    background-color: rgb(83, 139, 195);
+    color: white;
+    border: none;
+    font-size: 1.07rem;
+}
+
+.button:hover, button:hover {
+    cursor: pointer;
+    background-color: rgb(116, 159, 202);
+}
+
+#btnbox {
+    display: flex;
+    justify-content: flex-end;
+    width: 70vw;
+    margin: auto;
+    padding: 30px 0px;
+}
