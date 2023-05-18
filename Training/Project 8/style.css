@@ -19,7 +19,7 @@ a:hover {
     left: 0;
     width: 100vw;
     height: 100vh;
-    display: flex;
+    display: none;
     align-items: center;
     justify-content: center;
     z-index: 4;
@@ -36,13 +36,20 @@ a:hover {
     text-align: center;
 }
 
+#user {
+    margin-right: 30px;
+    font-size: 1.07rem;
+    padding: 0;
+    user-select: none;
+}
+
 #loginForm {
     box-shadow: 0 15px 40px rgba(0, 0, 0, 0.393);
     height: 25vh;
     width: 20vw;
     background-color: white;
     border-radius: 10px;
-    display: flex;
+    display: none;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
@@ -55,7 +62,7 @@ a:hover {
     width: 20vw;
     background-color: white;
     border-radius: 10px;
-    display: flex;
+    display: none;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
@@ -154,6 +161,7 @@ header .icons span:hover{
 header .current-date{
   font-size: 1.45rem;
   font-weight: 500;
+  user-select: none;
 }
 
 .calendar{
@@ -177,6 +185,7 @@ header .current-date{
 }
 
 .calendar .weeks li{
+    user-select: none;
   font-weight: 500;
   cursor: default;
 }
@@ -205,11 +214,11 @@ header .current-date{
     cursor: pointer;
 }
 
-.days p.inactive{
-  color: #aaa;
+.inactive{
+  color: #aaa !important;
 }
 
-.days p.active{
+.calendar p.active{
   color: #fff;
   background-color: rgb(83, 139, 195);
 }

@@ -11,8 +11,13 @@
     <script src="script.js" defer></script>
 </head>
 <body>
+    <?php
+        if (isset($_GET['login_success']) && $_GET['login_success'] == 0) {
+            echo "<p style=\"text-align: center; margin-top: 10px; color: red;\">Login Failed</p>";
+        }    
+    ?>
     <div id="loginbox">
-        <form action="login.php" id="loginForm">
+        <form action="login.php" id="loginForm" method="post" enctype="multipart/form-data">
             <div class="box-header">
                 <h1>Login</h1>
                 <span class="material-symbols-rounded" id="closeLogin">close</span>
@@ -25,10 +30,10 @@
                 <p>Password</p>
                 <input type="password" name="password" id="password">
             </div>
-            <input class="button" type="submit" value="Login" id="loginBtn">
+            <input class="button" type="submit" name="submit" value="Login" id="loginBtn">
             <p class="subscript">Don't have an account? <a href="#" id="toRegister">Register here</a></p>
         </form>
-        <form action="register.php" id="registerForm">
+        <form action="register.php" id="registerForm" method="post" enctype="multipart/form-data">
             <div class="box-header">
                 <h1>Register</h1>
                 <span class="material-symbols-rounded" id="closeRegister">close</span>
@@ -49,12 +54,22 @@
                 <p>Password</p>
                 <input type="password" name="password" id="password">
             </div>
-            <input class="button" type="submit" value="Register" id="registerBtn">
+            <input class="button" type="submit" name="submit" value="Register" id="registerBtn">
             <p class="subscript">Aready have an account? <a href="#" id="toLogin">Login here</a></p>
         </form>
     </div>
     <div id="btnbox">
-        <button id="login">Login</button>
+        <?php
+        if (isset($_GET['login_success']) && $_GET['login_success'] == 1) {
+            session_start();
+            $firstName = $_SESSION["firstName"];
+            $lastName = $_SESSION["lastName"];
+            echo "<p id=\"user\">" . $firstName . " " . $lastName . "</p>";
+            echo "<button onclick=\"location.href='logout.php'\" id=\"logout\">Logout</button>";
+        } else {
+            echo "<button id=\"login\">Login</button>";
+        }
+        ?>
     </div>
     <div class="wrapper">
         <header>

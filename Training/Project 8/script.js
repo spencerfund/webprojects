@@ -3,21 +3,21 @@ $(document).ready(function() {
     $("#registerForm").hide();
     $("#login").click(function (e) { 
         e.preventDefault();
-        $("#loginbox").show();
+        $("#loginbox").css("display", "flex");
         $("#registerForm").hide();
-        $("#loginForm").show();
+        $("#loginForm").css("display", "flex");
     });
 
     $("#toRegister").click(function (e) { 
         e.preventDefault();
         $("#loginForm").hide();
-        $("#registerForm").show();
+        $("#registerForm").css("display", "flex");
     });
 
     $("#toLogin").click(function (e) { 
         e.preventDefault();
         $("#registerForm").hide();
-        $("#loginForm").show();
+        $("#loginForm").css("display", "flex");
     });
 
     $("#closeLogin").click(function (e) { 
