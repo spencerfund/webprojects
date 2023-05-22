@@ -15,6 +15,15 @@
         if (isset($_GET['login_success']) && $_GET['login_success'] == 0) {
             echo "<p style=\"text-align: center; margin-top: 10px; color: red;\">Login Failed</p>";
         }    
+
+        if (isset($_GET['logout']) && $_GET['logout'] == true) {
+            echo    '<div id="logout-confirm">
+                        <div class="logout-text">
+                            <h1>You have successfully been logged out</h1>
+                            <button id="closeLogout" class="button">Close</button>
+                        </div>
+                    </div>';
+        }
     ?>
     <div id="loginbox">
         <form action="login.php" id="loginForm" method="post" enctype="multipart/form-data">
@@ -24,11 +33,11 @@
             </div>
             <div>
                 <p>Username</p>
-                <input type="text" name="username" id="username">
+                <input type="text" name="username" id="username2">
             </div>
             <div>
                 <p>Password</p>
-                <input type="password" name="password" id="password">
+                <input type="password" name="password" id="password2">
             </div>
             <input class="button" type="submit" name="submit" value="Login" id="loginBtn">
             <p class="subscript">Don't have an account? <a href="#" id="toRegister">Register here</a></p>

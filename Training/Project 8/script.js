@@ -1,3 +1,13 @@
+var holidays = [];
+
+class Holiday {
+    constructor(id, title, date) {
+        this.id = id;
+        this.title = title;
+        this.date = date;
+    }
+}
+
 $(document).ready(function() {
     $("#loginbox").hide();
     $("#registerForm").hide();
@@ -25,6 +35,7 @@ $(document).ready(function() {
         $("#loginbox").hide();
         $("#registerForm").hide();
         $("#loginForm").hide();  
+        $("#logout-confirm").hide();
     });
 
     $("#closeRegister").click(function (e) { 
@@ -32,6 +43,31 @@ $(document).ready(function() {
         $("#loginbox").hide();
         $("#registerForm").hide();
         $("#loginForm").hide();  
+        $("#logout-confirm").hide();
+    });
+
+    $("#closeLogout").click(function (e) { 
+        e.preventDefault();
+        $("#loginbox").hide();
+        $("#registerForm").hide();
+        $("#loginForm").hide();  
+        $("#logout-confirm").hide();
+    });
+
+    $.ajax({
+        url: 'getHolidays.php',
+        type: 'POST',
+        dataType: 'json',
+        success: function(data) {
+            for (let i = 0; i < data.length; i++) {
+                holidays.push(new Holiday(data[i].id, data[i].title, data[i].date));
+            }
+            console.log(holidays);
+            renderCalendar();
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            console.log('Error: ' + textStatus + ' - ' + errorThrown);
+        }
     });
 });
 
@@ -43,7 +79,7 @@ let date = new Date(),
 currYear = date.getFullYear(),
 currMonth = date.getMonth();
 
-const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "Novemeber", "December"];
+const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
 const renderCalendar = () => {
     let firstDayOfMonth = new Date(currYear, currMonth, 1).getDay(),
@@ -57,8 +93,21 @@ const renderCalendar = () => {
     }
 
     for (let i = 1; i <= lastDateOfMonth; i++) {
+        let holiday;
+        for (let j = 0; j < holidays.length; j++) {
+            let SQLDate = holidays[j].date;
+            let adate = SQLDate.replace(/ [-]/g, '/');
+            adate = Date.parse(adate);
+            let jsDate = new Date(adate);
+            if(jsDate.getDate() === i && jsDate.getMonth() === currMonth) {
+                holiday = `<div class="holiday">${holidays[j].title}</div>`;
+                break
+            } else {
+                holiday = "";
+            }
+        }
         let isToday = i === date.getDate() && currMonth === new Date().getMonth() && currYear === new Date().getFullYear() ? "active" : "";
-        liTag += `<li><p class="${isToday}">${i}</p></li>`;
+        liTag += `<li><p class="${isToday}">${i}</p><div class="events-holder">${holiday}</div></li>`;
     }
 
     for (let i = lastDayOfMonth; i < 6; i++) {
@@ -67,8 +116,6 @@ const renderCalendar = () => {
     currentDate.innerText = `${months[currMonth]} ${currYear}`;
     daysTag.innerHTML = liTag;
 }
-
-renderCalendar();
 
 prevNextIcon.forEach(icon => {
     icon.addEventListener("click", () => {
