@@ -73,12 +73,15 @@
             session_start();
             $firstName = $_SESSION["firstName"];
             $lastName = $_SESSION["lastName"];
+            $username = $_SESSION["username"];
             echo "<p id=\"user\">" . $firstName . " " . $lastName . "</p>";
             echo "<button onclick=\"location.href='logout.php'\" id=\"logout\">Logout</button>";
         } else {
             echo "<button id=\"login\">Login</button>";
+            $username = "";
         }
         ?>
+        <span id="storage" data-username="<?php echo $username; ?>"></span>
     </div>
     <div class="wrapper">
         <header>

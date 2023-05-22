@@ -1,10 +1,20 @@
 var holidays = [];
+var appointments = [];
 
 class Holiday {
     constructor(id, title, date) {
         this.id = id;
         this.title = title;
         this.date = date;
+    }
+}
+
+class Appointment {
+    constructor(id, title, startDate, endDate) {
+        this.id = id;
+        this.title = title;
+        this.startDate = startDate;
+        this.endDate = endDate;
     }
 }
 
@@ -54,6 +64,29 @@ $(document).ready(function() {
         $("#logout-confirm").hide();
     });
 
+    let username = $("#storage").attr("data-username");
+
+    if (username != "") {
+        $.ajax({
+            url: 'getEvents.php',
+            type: 'POST',
+            data: {
+                username: username
+            },
+            dataType: 'json',
+            success: function(data) {
+                for (let i = 0; i < data.length; i++) {
+                    appointments.push(new Appointment(data[i].id, data[i].title, data[i].startDate, data[i].endDate));
+                }
+                console.log(appointments);
+                renderCalendar();
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                console.log('Error: ' + textStatus + ' - ' + errorThrown);
+            }
+        });
+    }
+
     $.ajax({
         url: 'getHolidays.php',
         type: 'POST',
@@ -94,6 +127,7 @@ const renderCalendar = () => {
 
     for (let i = 1; i <= lastDateOfMonth; i++) {
         let holiday;
+        let appointment = "";
         for (let j = 0; j < holidays.length; j++) {
             let SQLDate = holidays[j].date;
             let adate = SQLDate.replace(/ [-]/g, '/');
@@ -101,13 +135,28 @@ const renderCalendar = () => {
             let jsDate = new Date(adate);
             if(jsDate.getDate() === i && jsDate.getMonth() === currMonth) {
                 holiday = `<div class="holiday">${holidays[j].title}</div>`;
-                break
+                break;
             } else {
                 holiday = "";
             }
         }
+        for (let k = 0; k < appointments.length; k++) {
+            let SQLStartDate = appointments[k].startDate;
+            let SQLEndDate = appointments[k].endDate;
+            let startDate = SQLStartDate.replace(/ [-] /g, '/');
+            let endDate = SQLEndDate.replace(/ [-] /g, '/');
+            let jsStartDate = new Date(startDate);
+            let jsEndDate = new Date(endDate);
+            let jsStartHour = jsStartDate.getHours();
+            let jsStartMinute = jsStartDate.getMinutes().toString().padStart(2, '0');
+            let jsEndHour = jsEndDate.getHours();
+            let jsEndMinute = jsEndDate.getMinutes().toString().padStart(2, '0');
+            if (jsStartDate.getDate() === i && jsStartDate.getMonth() === currMonth) {
+                appointment += `<div class="appointment">${appointments[k].title}<br>${jsStartHour}:${jsStartMinute} - ${jsEndHour}:${jsEndMinute}</div>`;
+            }
+        }
         let isToday = i === date.getDate() && currMonth === new Date().getMonth() && currYear === new Date().getFullYear() ? "active" : "";
-        liTag += `<li><p class="${isToday}">${i}</p><div class="events-holder">${holiday}</div></li>`;
+        liTag += `<li><p class="${isToday}">${i}</p><div class="events-holder">${holiday}${appointment}</div></li>`;
     }
 
     for (let i = lastDayOfMonth; i < 6; i++) {

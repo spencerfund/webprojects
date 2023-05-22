@@ -4,8 +4,8 @@ include("database.php");
 $firstName = $lastName = $username = $password = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $firstName = test_input($_POST["firstName"]);
-    $lastName = test_input($_POST["lastName"]);
+    $firstName = test_input($_POST["first-name"]);
+    $lastName = test_input($_POST["last-name"]);
     $username = test_input($_POST["username"]);
     $password = test_input($_POST["password"]);
 }
