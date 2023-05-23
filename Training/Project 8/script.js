@@ -19,6 +19,8 @@ class Appointment {
 }
 
 $(document).ready(function() {
+    let username = $("#storage").attr("data-username");
+
     $("#loginbox").hide();
     $("#registerForm").hide();
     $("#login").click(function (e) { 
@@ -77,44 +79,34 @@ $(document).ready(function() {
         $("#newAppointmentForm").css("display", "flex");
     });
 
-    let username = $("#storage").attr("data-username");
-
-    if (username != "") {
+    $("#eventBtn").click(function (e) { 
+        e.preventDefault();
         $.ajax({
-            url: 'getEvents.php',
+            url: 'addEvent.php',
             type: 'POST',
             data: {
-                username: username
+                title: $("#title").val(),
+                date: $("#date").val(),
+                startTime: $("#start-time").val(),
+                endTime: $("#end-time").val()
             },
             dataType: 'json',
-            success: function(data) {
-                for (let i = 0; i < data.length; i++) {
-                    appointments.push(new Appointment(data[i].id, data[i].title, data[i].startDate, data[i].endDate));
-                }
-                console.log(appointments);
+            success: function() {
+                $("#newAppointmentBox").hide();
+                $("#newAppointmentForm").hide();
+                getEvents(username);
                 renderCalendar();
             },
             error: function (jqXHR, textStatus, errorThrown) {
                 console.log('Error: ' + textStatus + ' - ' + errorThrown);
             }
         });
-    }
-
-    $.ajax({
-        url: 'getHolidays.php',
-        type: 'POST',
-        dataType: 'json',
-        success: function(data) {
-            for (let i = 0; i < data.length; i++) {
-                holidays.push(new Holiday(data[i].id, data[i].title, data[i].date));
-            }
-            console.log(holidays);
-            renderCalendar();
-        },
-        error: function (jqXHR, textStatus, errorThrown) {
-            console.log('Error: ' + textStatus + ' - ' + errorThrown);
-        }
     });
+
+    if (username != "") {
+        getEvents(username);
+    }
+    getHolidays();
 });
 
 const daysTag = document.querySelector(".days"),
@@ -127,7 +119,50 @@ currMonth = date.getMonth();
 
 const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
+function getHolidays() {
+    $.ajax({
+        url: 'getHolidays.php',
+        type: 'POST',
+        dataType: 'json',
+        success: function(data) {
+            for (let i = 0; i < data.length; i++) {
+                holidays.push(new Holiday(data[i].id, data[i].title, data[i].date));
+            }
+            renderCalendar();
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            console.log('Error: ' + jqXHR + textStatus + ' - ' + errorThrown);
+        }
+    });
+}
+
+function getEvents(username) {
+    appointments = [];
+    let startMonth = new Date(currYear, currMonth, 1, 0, 0, 0).toISOString().slice(0,19).replace('T', ' ');
+    let endMonth = new Date(currYear, currMonth + 1, 0, 23, 59, 59).toISOString().slice(0,19).replace('T', ' ');
+    $.ajax({
+        url: 'getEvents.php',
+        type: 'POST',
+        data: {
+            username: username,
+            startMonth: startMonth,
+            endMonth: endMonth
+        },
+        dataType: 'json',
+        success: function(data) {
+            for (let i = 0; i < data.length; i++) {
+                appointments.push(new Appointment(data[i].id, data[i].title, data[i].startDate, data[i].endDate));
+            }
+            renderCalendar();
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            console.log('Error: ' + textStatus + ' - ' + errorThrown);
+        }
+    });
+}
+
 const renderCalendar = () => {
+    let username = $("#storage").attr("data-username");
     let firstDayOfMonth = new Date(currYear, currMonth, 1).getDay(),
     lastDateOfMonth = new Date(currYear, currMonth + 1, 0).getDate(),
     lastDayOfMonth = new Date(currYear, currMonth, lastDateOfMonth).getDay(),
@@ -165,7 +200,7 @@ const renderCalendar = () => {
             let jsEndHour = jsEndDate.getHours();
             let jsEndMinute = jsEndDate.getMinutes().toString().padStart(2, '0');
             if (jsStartDate.getDate() === i && jsStartDate.getMonth() === currMonth) {
-                appointment += `<div class="appointment">${appointments[k].title}<br>${jsStartHour}:${jsStartMinute} - ${jsEndHour}:${jsEndMinute}</div>`;
+                appointment += `<div class="appointment" id="app${i}" onclick="deleteApp(this.id)">${appointments[k].title}<br>${jsStartHour}:${jsStartMinute} - ${jsEndHour}:${jsEndMinute}</div>`;
             }
         }
         let isToday = i === date.getDate() && currMonth === new Date().getMonth() && currYear === new Date().getFullYear() ? "active" : "";
@@ -180,6 +215,7 @@ const renderCalendar = () => {
 }
 
 prevNextIcon.forEach(icon => {
+    let username = $("#storage").attr("data-username");
     icon.addEventListener("click", () => {
         currMonth = icon.id === "prev" ? currMonth - 1 : currMonth + 1;
 
@@ -190,6 +226,28 @@ prevNextIcon.forEach(icon => {
         } else {
             date = new Date();
         }
-        renderCalendar();
+        getEvents(username);
     });
 });
+
+function deleteApp(appID) {
+    let username = $("#storage").attr("data-username");
+    queryID = "#" + appID;
+    let stuff = $(queryID).html();
+    deleteTitle = stuff.substr(0, stuff.indexOf('<'));
+    $.ajax({
+        url: 'deleteEvent.php',
+        type: 'POST',
+        dataType: 'json',
+        data: {
+            title: deleteTitle
+        },
+        success: function() {
+            getEvents(username);
+            renderCalendar();
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+            console.log('Error: ' + textStatus + ' - ' + errorThrown);
+        }
+    });
+}

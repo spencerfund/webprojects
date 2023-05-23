@@ -26,7 +26,7 @@
         }
     ?>
     <div class="lightbox-background" id="newAppointmentBox">
-        <form action="addEvent.php" id="newAppointmentForm" method="post" enctype="multipart/form-data">
+        <form action="" id="newAppointmentForm" method="post" enctype="multipart/form-data">
             <div class="box-header">
                 <h1>New Appointment</h1>
                 <span class="material-symbols-rounded" id="closeNewEvent">close</span>

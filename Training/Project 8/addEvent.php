@@ -9,8 +9,8 @@ $username = $_SESSION["username"];
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $title = test_input($_POST["title"]);
     $date = test_input($_POST["date"]);
-    $startTime = test_input($_POST["start-time"]);
-    $endTime = test_input($_POST["end-time"]);
+    $startTime = test_input($_POST["startTime"]);
+    $endTime = test_input($_POST["endTime"]);
 }
 
 function test_input($data) {
@@ -26,9 +26,11 @@ $endTime = $date . ' ' . $endTime;
 $sql = "INSERT INTO events (USERNAME, TITLE, START_EVENT, END_EVENT) VALUES ('$username', '$title', '$startTime', '$endTime')";
 
 if ($conn->query($sql) === TRUE) {
-    header("Location: index.php?login_success=1&add_event_success=1");
+    http_response_code(200);
+    echo json_encode(array("message" => "Event added successfully"));
 } else {
-    header("Location: index.php?login_success=1&add_event_success=0");
+    http_response_code(400);
+    echo json_encode(array("message" => "There was an error processing the request"));
 }
 
 $conn->close();

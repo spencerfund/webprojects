@@ -2,8 +2,10 @@
 include("database.php");
 
 $username = $_POST['username'];
+$startMonth = $_POST['startMonth'];
+$endMonth = $_POST['endMonth'];
 
-$sql = "SELECT * FROM events WHERE USERNAME='$username'";
+$sql = "SELECT * FROM events WHERE USERNAME='$username' AND (START_EVENT BETWEEN '$startMonth' AND '$endMonth')";
 
 $result = $conn->query($sql);
 
