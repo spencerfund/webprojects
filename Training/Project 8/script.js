@@ -64,6 +64,19 @@ $(document).ready(function() {
         $("#logout-confirm").hide();
     });
 
+    $("#closeNewEvent").click(function (e) { 
+        e.preventDefault();
+        $("#newAppointmentBox").hide();
+        $("#newAppointmentForm").hide();
+    });
+
+
+    $("#newEvent").click(function (e) { 
+        e.preventDefault();
+        $("#newAppointmentBox").css("display", "flex");
+        $("#newAppointmentForm").css("display", "flex");
+    });
+
     let username = $("#storage").attr("data-username");
 
     if (username != "") {

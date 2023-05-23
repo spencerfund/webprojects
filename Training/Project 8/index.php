@@ -25,6 +25,31 @@
                     </div>';
         }
     ?>
+    <div class="lightbox-background" id="newAppointmentBox">
+        <form action="addEvent.php" id="newAppointmentForm" method="post" enctype="multipart/form-data">
+            <div class="box-header">
+                <h1>New Appointment</h1>
+                <span class="material-symbols-rounded" id="closeNewEvent">close</span>
+            </div>
+            <div>
+                <p>Appointment Title</p>
+                <input type="text" name="title" id="title">
+            </div>
+            <div>
+                <p>Date</p>
+                <input type="date" name="date" id="date">
+            </div>
+            <div>
+                <p>Start Time</p>
+                <input type="time" name="start-time" id="start-time">
+            </div>
+            <div>
+                <p>End Time</p>
+                <input type="time" name="end-time" id="end-time">
+            </div>
+            <input class="button" type="submit" name="submit" value="Create Appointment" id="eventBtn">
+        </form>
+    </div>
     <div id="loginbox">
         <form action="login.php" id="loginForm" method="post" enctype="multipart/form-data">
             <div class="box-header">
@@ -75,6 +100,7 @@
             $lastName = $_SESSION["lastName"];
             $username = $_SESSION["username"];
             echo "<p id=\"user\">" . $firstName . " " . $lastName . "</p>";
+            echo "<button id=\"newEvent\">Add New Event</button>";
             echo "<button onclick=\"location.href='logout.php'\" id=\"logout\">Logout</button>";
         } else {
             echo "<button id=\"login\">Login</button>";

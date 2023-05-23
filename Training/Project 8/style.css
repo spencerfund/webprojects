@@ -55,7 +55,7 @@ a:hover {
     padding: 20px;
 }
 
-#registerForm {
+#registerForm, #newAppointmentForm {
     box-shadow: 0 15px 40px rgba(0, 0, 0, 0.393);
     height: 40vh;
     width: 20vw;
@@ -68,7 +68,7 @@ a:hover {
     padding: 20px;  
 }
 
-#logout-confirm {
+#logout-confirm, .lightbox-background {
   position: absolute;
   background-color: #333333a9;
   top: 0;
@@ -77,7 +77,7 @@ a:hover {
   height: 100vh;
   padding: 20px;
   z-index: 6;
-  display: flex;
+  display: none;
   align-items: center;
   justify-content: center;
 }
@@ -115,15 +115,20 @@ a:hover {
     cursor: pointer;
 }
 
+#eventBtn {
+  margin-top: 30px;
+}
+
 #closeLogout {
   justify-self: end;
   cursor: pointer;
 }
 
-input[type="text"], input[type="password"] {
+input[type="text"], input[type="password"], input[type="date"], input[type="time"] {
     font-size: larger !important;
     border-radius: 10px;
     background-color: rgb(223, 223, 223) !important;
+    width: 15vw;
     padding: 5px 20px;
     border: none;
 }
@@ -135,7 +140,7 @@ input:-webkit-autofill {
     background-image: none !important;
 }
 
-input[type="text"]:focus, input[type="password"]:focus {
+input[type="text"]:focus, input[type="password"]:focus, input[type="date"]:focus, input[type="time"]:focus {
     outline: none;
     border: 3px solid rgb(83, 139, 195);
 }
@@ -173,7 +178,19 @@ header .icons{
     border-radius: 50%;
 }
 
-#loginbox span:hover {
+.lightbox-background span {
+  height: 50px;
+  width: 50px;
+  margin: 0 1px;
+  cursor: pointer;
+  text-align: center;
+  line-height: 50px;
+  font-size: 1.9rem;
+  user-select: none;
+  border-radius: 50%;
+}
+
+#loginbox span:hover, .lightbox-background span:hover {
     color: #878787;
 }
 
@@ -259,6 +276,7 @@ header .current-date{
 }
 
 .button, button {
+    margin: 0px 20px;
     border-radius: 10px;
     padding: 10px 30px;
     background-color: rgb(83, 139, 195);
